@@ -9,6 +9,8 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { AppProvider } from "@/lib/app-context";
+import { Nav } from "@/components/Nav";
 
 function NotFoundComponent() {
   return (
@@ -113,7 +115,14 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <AppProvider>
+        <div className="min-h-screen bg-background">
+          <Nav />
+          <main className="max-w-[1280px] mx-auto px-6 py-8">
+            <Outlet />
+          </main>
+        </div>
+      </AppProvider>
     </QueryClientProvider>
   );
 }
