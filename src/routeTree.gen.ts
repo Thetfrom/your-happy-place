@@ -16,6 +16,7 @@ import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as CompetitorsRouteImport } from './routes/competitors'
 import { Route as CompareRouteImport } from './routes/compare'
+import { Route as AiVisibilityRouteImport } from './routes/ai-visibility'
 import { Route as ActionsRouteImport } from './routes/actions'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -54,6 +55,11 @@ const CompareRoute = CompareRouteImport.update({
   path: '/compare',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AiVisibilityRoute = AiVisibilityRouteImport.update({
+  id: '/ai-visibility',
+  path: '/ai-visibility',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ActionsRoute = ActionsRouteImport.update({
   id: '/actions',
   path: '/actions',
@@ -68,6 +74,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/actions': typeof ActionsRoute
+  '/ai-visibility': typeof AiVisibilityRoute
   '/compare': typeof CompareRoute
   '/competitors': typeof CompetitorsRoute
   '/reports': typeof ReportsRoute
@@ -79,6 +86,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/actions': typeof ActionsRoute
+  '/ai-visibility': typeof AiVisibilityRoute
   '/compare': typeof CompareRoute
   '/competitors': typeof CompetitorsRoute
   '/reports': typeof ReportsRoute
@@ -91,6 +99,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/actions': typeof ActionsRoute
+  '/ai-visibility': typeof AiVisibilityRoute
   '/compare': typeof CompareRoute
   '/competitors': typeof CompetitorsRoute
   '/reports': typeof ReportsRoute
@@ -104,6 +113,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/actions'
+    | '/ai-visibility'
     | '/compare'
     | '/competitors'
     | '/reports'
@@ -115,6 +125,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/actions'
+    | '/ai-visibility'
     | '/compare'
     | '/competitors'
     | '/reports'
@@ -126,6 +137,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/actions'
+    | '/ai-visibility'
     | '/compare'
     | '/competitors'
     | '/reports'
@@ -138,6 +150,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ActionsRoute: typeof ActionsRoute
+  AiVisibilityRoute: typeof AiVisibilityRoute
   CompareRoute: typeof CompareRoute
   CompetitorsRoute: typeof CompetitorsRoute
   ReportsRoute: typeof ReportsRoute
@@ -198,6 +211,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompareRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ai-visibility': {
+      id: '/ai-visibility'
+      path: '/ai-visibility'
+      fullPath: '/ai-visibility'
+      preLoaderRoute: typeof AiVisibilityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/actions': {
       id: '/actions'
       path: '/actions'
@@ -218,6 +238,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ActionsRoute: ActionsRoute,
+  AiVisibilityRoute: AiVisibilityRoute,
   CompareRoute: CompareRoute,
   CompetitorsRoute: CompetitorsRoute,
   ReportsRoute: ReportsRoute,
