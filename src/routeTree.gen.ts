@@ -14,6 +14,7 @@ import { Route as TrendsRouteImport } from './routes/trends'
 import { Route as SignalsRouteImport } from './routes/signals'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as CompetitorsRouteImport } from './routes/competitors'
 import { Route as CompareRouteImport } from './routes/compare'
 import { Route as ActionsRouteImport } from './routes/actions'
 import { Route as IndexRouteImport } from './routes/index'
@@ -43,6 +44,11 @@ const ReportsRoute = ReportsRouteImport.update({
   path: '/reports',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CompetitorsRoute = CompetitorsRouteImport.update({
+  id: '/competitors',
+  path: '/competitors',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CompareRoute = CompareRouteImport.update({
   id: '/compare',
   path: '/compare',
@@ -63,6 +69,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/actions': typeof ActionsRoute
   '/compare': typeof CompareRoute
+  '/competitors': typeof CompetitorsRoute
   '/reports': typeof ReportsRoute
   '/settings': typeof SettingsRoute
   '/signals': typeof SignalsRoute
@@ -73,6 +80,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/actions': typeof ActionsRoute
   '/compare': typeof CompareRoute
+  '/competitors': typeof CompetitorsRoute
   '/reports': typeof ReportsRoute
   '/settings': typeof SettingsRoute
   '/signals': typeof SignalsRoute
@@ -84,6 +92,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/actions': typeof ActionsRoute
   '/compare': typeof CompareRoute
+  '/competitors': typeof CompetitorsRoute
   '/reports': typeof ReportsRoute
   '/settings': typeof SettingsRoute
   '/signals': typeof SignalsRoute
@@ -96,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/actions'
     | '/compare'
+    | '/competitors'
     | '/reports'
     | '/settings'
     | '/signals'
@@ -106,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/actions'
     | '/compare'
+    | '/competitors'
     | '/reports'
     | '/settings'
     | '/signals'
@@ -116,6 +127,7 @@ export interface FileRouteTypes {
     | '/'
     | '/actions'
     | '/compare'
+    | '/competitors'
     | '/reports'
     | '/settings'
     | '/signals'
@@ -127,6 +139,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ActionsRoute: typeof ActionsRoute
   CompareRoute: typeof CompareRoute
+  CompetitorsRoute: typeof CompetitorsRoute
   ReportsRoute: typeof ReportsRoute
   SettingsRoute: typeof SettingsRoute
   SignalsRoute: typeof SignalsRoute
@@ -171,6 +184,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReportsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/competitors': {
+      id: '/competitors'
+      path: '/competitors'
+      fullPath: '/competitors'
+      preLoaderRoute: typeof CompetitorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/compare': {
       id: '/compare'
       path: '/compare'
@@ -199,6 +219,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ActionsRoute: ActionsRoute,
   CompareRoute: CompareRoute,
+  CompetitorsRoute: CompetitorsRoute,
   ReportsRoute: ReportsRoute,
   SettingsRoute: SettingsRoute,
   SignalsRoute: SignalsRoute,
