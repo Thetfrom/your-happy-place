@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TrendsRouteImport } from './routes/trends'
 import { Route as SignalsRouteImport } from './routes/signals'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as CompareRouteImport } from './routes/compare'
 import { Route as ActionsRouteImport } from './routes/actions'
@@ -24,6 +25,11 @@ const TrendsRoute = TrendsRouteImport.update({
 const SignalsRoute = SignalsRouteImport.update({
   id: '/signals',
   path: '/signals',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReportsRoute = ReportsRouteImport.update({
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/actions': typeof ActionsRoute
   '/compare': typeof CompareRoute
   '/reports': typeof ReportsRoute
+  '/settings': typeof SettingsRoute
   '/signals': typeof SignalsRoute
   '/trends': typeof TrendsRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/actions': typeof ActionsRoute
   '/compare': typeof CompareRoute
   '/reports': typeof ReportsRoute
+  '/settings': typeof SettingsRoute
   '/signals': typeof SignalsRoute
   '/trends': typeof TrendsRoute
 }
@@ -69,20 +77,36 @@ export interface FileRoutesById {
   '/actions': typeof ActionsRoute
   '/compare': typeof CompareRoute
   '/reports': typeof ReportsRoute
+  '/settings': typeof SettingsRoute
   '/signals': typeof SignalsRoute
   '/trends': typeof TrendsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/actions' | '/compare' | '/reports' | '/signals' | '/trends'
+  fullPaths:
+    | '/'
+    | '/actions'
+    | '/compare'
+    | '/reports'
+    | '/settings'
+    | '/signals'
+    | '/trends'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/actions' | '/compare' | '/reports' | '/signals' | '/trends'
+  to:
+    | '/'
+    | '/actions'
+    | '/compare'
+    | '/reports'
+    | '/settings'
+    | '/signals'
+    | '/trends'
   id:
     | '__root__'
     | '/'
     | '/actions'
     | '/compare'
     | '/reports'
+    | '/settings'
     | '/signals'
     | '/trends'
   fileRoutesById: FileRoutesById
@@ -92,6 +116,7 @@ export interface RootRouteChildren {
   ActionsRoute: typeof ActionsRoute
   CompareRoute: typeof CompareRoute
   ReportsRoute: typeof ReportsRoute
+  SettingsRoute: typeof SettingsRoute
   SignalsRoute: typeof SignalsRoute
   TrendsRoute: typeof TrendsRoute
 }
@@ -110,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/signals'
       fullPath: '/signals'
       preLoaderRoute: typeof SignalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reports': {
@@ -148,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   ActionsRoute: ActionsRoute,
   CompareRoute: CompareRoute,
   ReportsRoute: ReportsRoute,
+  SettingsRoute: SettingsRoute,
   SignalsRoute: SignalsRoute,
   TrendsRoute: TrendsRoute,
 }
