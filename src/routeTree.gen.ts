@@ -13,6 +13,7 @@ import { Route as TrendsRouteImport } from './routes/trends'
 import { Route as SignalsRouteImport } from './routes/signals'
 import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as CompareRouteImport } from './routes/compare'
+import { Route as ActionsRouteImport } from './routes/actions'
 import { Route as IndexRouteImport } from './routes/index'
 
 const TrendsRoute = TrendsRouteImport.update({
@@ -35,6 +36,11 @@ const CompareRoute = CompareRouteImport.update({
   path: '/compare',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ActionsRoute = ActionsRouteImport.update({
+  id: '/actions',
+  path: '/actions',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -43,6 +49,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/actions': typeof ActionsRoute
   '/compare': typeof CompareRoute
   '/reports': typeof ReportsRoute
   '/signals': typeof SignalsRoute
@@ -50,6 +57,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/actions': typeof ActionsRoute
   '/compare': typeof CompareRoute
   '/reports': typeof ReportsRoute
   '/signals': typeof SignalsRoute
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/actions': typeof ActionsRoute
   '/compare': typeof CompareRoute
   '/reports': typeof ReportsRoute
   '/signals': typeof SignalsRoute
@@ -65,14 +74,22 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/compare' | '/reports' | '/signals' | '/trends'
+  fullPaths: '/' | '/actions' | '/compare' | '/reports' | '/signals' | '/trends'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/compare' | '/reports' | '/signals' | '/trends'
-  id: '__root__' | '/' | '/compare' | '/reports' | '/signals' | '/trends'
+  to: '/' | '/actions' | '/compare' | '/reports' | '/signals' | '/trends'
+  id:
+    | '__root__'
+    | '/'
+    | '/actions'
+    | '/compare'
+    | '/reports'
+    | '/signals'
+    | '/trends'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ActionsRoute: typeof ActionsRoute
   CompareRoute: typeof CompareRoute
   ReportsRoute: typeof ReportsRoute
   SignalsRoute: typeof SignalsRoute
@@ -109,6 +126,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompareRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/actions': {
+      id: '/actions'
+      path: '/actions'
+      fullPath: '/actions'
+      preLoaderRoute: typeof ActionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -121,6 +145,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ActionsRoute: ActionsRoute,
   CompareRoute: CompareRoute,
   ReportsRoute: ReportsRoute,
   SignalsRoute: SignalsRoute,
