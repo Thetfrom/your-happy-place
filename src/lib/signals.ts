@@ -44,13 +44,13 @@ export function computeRag(curr: number, prev: number | undefined, invert?: bool
   return improved ? "green" : "red";
 }
 
-export function deltaLabel(curr: number, prev: number | undefined, invert?: boolean, suffix = ""): string | undefined {
+export function deltaLabel(curr: number, prev: number | undefined, _invert?: boolean, suffix = ""): string | undefined {
   if (prev === undefined) return undefined;
   const diff = curr - prev;
   if (diff === 0) return "no change";
-  const sign = diff > 0 ? "+" : "";
-  const formatted = Math.abs(diff) < 1 ? diff.toFixed(2) : Math.round(diff).toString();
-  return `${sign}${diff > 0 ? "" : "-"}${formatted.replace("-", "")}${suffix}`.replace("+-", "-");
+  const abs = Math.abs(diff);
+  const formatted = abs < 1 ? abs.toFixed(2) : Math.round(abs).toString();
+  return `${diff > 0 ? "+" : "-"}${formatted}${suffix}`;
 }
 
 export function formatMonth(date: string): string {
