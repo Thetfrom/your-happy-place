@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as UpgradeRouteImport } from './routes/upgrade'
 import { Route as TrendsRouteImport } from './routes/trends'
+import { Route as SocialRouteImport } from './routes/social'
 import { Route as SignalsRouteImport } from './routes/signals'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ReportsRouteImport } from './routes/reports'
@@ -28,6 +29,11 @@ const UpgradeRoute = UpgradeRouteImport.update({
 const TrendsRoute = TrendsRouteImport.update({
   id: '/trends',
   path: '/trends',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SocialRoute = SocialRouteImport.update({
+  id: '/social',
+  path: '/social',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SignalsRoute = SignalsRouteImport.update({
@@ -80,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/reports': typeof ReportsRoute
   '/settings': typeof SettingsRoute
   '/signals': typeof SignalsRoute
+  '/social': typeof SocialRoute
   '/trends': typeof TrendsRoute
   '/upgrade': typeof UpgradeRoute
 }
@@ -92,6 +99,7 @@ export interface FileRoutesByTo {
   '/reports': typeof ReportsRoute
   '/settings': typeof SettingsRoute
   '/signals': typeof SignalsRoute
+  '/social': typeof SocialRoute
   '/trends': typeof TrendsRoute
   '/upgrade': typeof UpgradeRoute
 }
@@ -105,6 +113,7 @@ export interface FileRoutesById {
   '/reports': typeof ReportsRoute
   '/settings': typeof SettingsRoute
   '/signals': typeof SignalsRoute
+  '/social': typeof SocialRoute
   '/trends': typeof TrendsRoute
   '/upgrade': typeof UpgradeRoute
 }
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
     | '/reports'
     | '/settings'
     | '/signals'
+    | '/social'
     | '/trends'
     | '/upgrade'
   fileRoutesByTo: FileRoutesByTo
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/reports'
     | '/settings'
     | '/signals'
+    | '/social'
     | '/trends'
     | '/upgrade'
   id:
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '/reports'
     | '/settings'
     | '/signals'
+    | '/social'
     | '/trends'
     | '/upgrade'
   fileRoutesById: FileRoutesById
@@ -156,6 +168,7 @@ export interface RootRouteChildren {
   ReportsRoute: typeof ReportsRoute
   SettingsRoute: typeof SettingsRoute
   SignalsRoute: typeof SignalsRoute
+  SocialRoute: typeof SocialRoute
   TrendsRoute: typeof TrendsRoute
   UpgradeRoute: typeof UpgradeRoute
 }
@@ -174,6 +187,13 @@ declare module '@tanstack/react-router' {
       path: '/trends'
       fullPath: '/trends'
       preLoaderRoute: typeof TrendsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/social': {
+      id: '/social'
+      path: '/social'
+      fullPath: '/social'
+      preLoaderRoute: typeof SocialRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/signals': {
@@ -244,6 +264,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReportsRoute: ReportsRoute,
   SettingsRoute: SettingsRoute,
   SignalsRoute: SignalsRoute,
+  SocialRoute: SocialRoute,
   TrendsRoute: TrendsRoute,
   UpgradeRoute: UpgradeRoute,
 }
