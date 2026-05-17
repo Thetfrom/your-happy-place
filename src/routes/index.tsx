@@ -232,7 +232,3 @@ function nextRunDate(runDay: number): Date {
   if (candidate <= now) candidate.setMonth(candidate.getMonth() + 1);
   return candidate;
 }
-
-function Index() {
-  return <PlaceholderIndex />;
-}
