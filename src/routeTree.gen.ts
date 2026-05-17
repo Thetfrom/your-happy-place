@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TrendsRouteImport } from './routes/trends'
 import { Route as SignalsRouteImport } from './routes/signals'
+import { Route as CompareRouteImport } from './routes/compare'
 import { Route as IndexRouteImport } from './routes/index'
 
 const TrendsRoute = TrendsRouteImport.update({
@@ -23,6 +24,11 @@ const SignalsRoute = SignalsRouteImport.update({
   path: '/signals',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CompareRoute = CompareRouteImport.update({
+  id: '/compare',
+  path: '/compare',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -31,30 +37,34 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
   '/signals': typeof SignalsRoute
   '/trends': typeof TrendsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
   '/signals': typeof SignalsRoute
   '/trends': typeof TrendsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
   '/signals': typeof SignalsRoute
   '/trends': typeof TrendsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/signals' | '/trends'
+  fullPaths: '/' | '/compare' | '/signals' | '/trends'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/signals' | '/trends'
-  id: '__root__' | '/' | '/signals' | '/trends'
+  to: '/' | '/compare' | '/signals' | '/trends'
+  id: '__root__' | '/' | '/compare' | '/signals' | '/trends'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CompareRoute: typeof CompareRoute
   SignalsRoute: typeof SignalsRoute
   TrendsRoute: typeof TrendsRoute
 }
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignalsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/compare': {
+      id: '/compare'
+      path: '/compare'
+      fullPath: '/compare'
+      preLoaderRoute: typeof CompareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CompareRoute: CompareRoute,
   SignalsRoute: SignalsRoute,
   TrendsRoute: TrendsRoute,
 }
