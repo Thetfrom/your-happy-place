@@ -74,14 +74,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "TAMEYO Monitor — Subscriber Dashboard" },
+      { title: "TAMEYO Monitor - Subscriber Dashboard" },
       { name: "description", content: "Monthly SEO and presence monitoring dashboard for TAMEYO Monitor subscribers." },
       { name: "author", content: "TAMEYO Group" },
-      { property: "og:title", content: "TAMEYO Monitor" },
-      { property: "og:description", content: "Monthly SEO and presence monitoring dashboard." },
+      { property: "og:title", content: "TAMEYO Monitor - Subscriber Dashboard" },
+      { property: "og:description", content: "Monthly SEO and presence monitoring dashboard for TAMEYO Monitor subscribers." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "TAMEYO Monitor - Subscriber Dashboard" },
+      { name: "twitter:description", content: "Monthly SEO and presence monitoring dashboard for TAMEYO Monitor subscribers." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/c09fc8cd-d605-435a-b6a1-fd386f4cd8d5" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/c09fc8cd-d605-435a-b6a1-fd386f4cd8d5" },
     ],
     links: [
       {
