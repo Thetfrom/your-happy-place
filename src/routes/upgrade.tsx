@@ -32,8 +32,8 @@ function UpgradePage() {
   const target: "pro" | "agency" = subscriber.plan === "lite" ? "pro" : "agency";
   const features = target === "pro" ? PRO : AGENCY;
   const url = target === "pro"
-    ? "https://www.tameyogroup.com/checkout?checkoutId=pro-plan-id"
-    : "https://www.tameyogroup.com/checkout?checkoutId=agency-plan-id";
+    ? "https://www.tameyogroup.com/checkout?checkoutId=PASTE_REAL_PRO_CHECKOUT_ID_HERE"
+    : "https://www.tameyogroup.com/checkout?checkoutId=PASTE_REAL_AGENCY_CHECKOUT_ID_HERE";
 
   return (
     <div className="max-w-2xl mx-auto">
