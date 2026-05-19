@@ -46,6 +46,7 @@ function SignalsPage() {
               rag={computeRag(c, p, sig.invert)}
               sparkline={snapshots.map((s) => sig.raw(s))}
               invertSpark={sig.invert}
+              infoText={sig.info}
             />
           );
         })}
