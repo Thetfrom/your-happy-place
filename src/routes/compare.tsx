@@ -38,7 +38,7 @@ function ComparePage() {
   return (
     <div>
       <h1 className="text-3xl mb-1">Compare</h1>
-      <p className="text-text-secondary mb-6">Pick two reports to see what changed.</p>
+      <p className="text-text-secondary mb-6">Select any two months from the dropdowns below to see a side-by-side comparison of every signal — useful for tracking progress over a quarter or spotting what drove a score change.</p>
 
       <div className="grid grid-cols-2 gap-4 mb-6">
         <Picker label="Month A" value={aIdx} onChange={setAIdx} snapshots={snapshots} />
