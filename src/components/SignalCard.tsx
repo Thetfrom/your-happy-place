@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowRight, ArrowUp } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUp, Info } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export type RAG = "green" | "amber" | "red";
@@ -13,6 +13,7 @@ interface Props {
   onUnlock?: () => void;
   sparkline?: number[];
   invertSpark?: boolean;
+  infoText?: string;
 }
 
 const ragStyles: Record<RAG, string> = {
@@ -27,7 +28,7 @@ const ragDot: Record<RAG, string> = {
   red: "bg-[var(--signal-red)]",
 };
 
-export function SignalCard({ name, value, previous, delta, rag, locked, onUnlock, sparkline, invertSpark }: Props) {
+export function SignalCard({ name, value, previous, delta, rag, locked, onUnlock, sparkline, invertSpark, infoText }: Props) {
   if (locked) {
     return (
       <div className="bg-card border border-border rounded-lg p-5 relative overflow-hidden">
@@ -46,7 +47,17 @@ export function SignalCard({ name, value, previous, delta, rag, locked, onUnlock
   return (
     <div className="bg-card border border-border rounded-lg p-5 flex flex-col gap-2 hover:border-[var(--brand-orange)]/30 transition-colors">
       <div className="flex items-start justify-between">
-        <div className="text-xs uppercase tracking-wide text-text-muted font-semibold">{name}</div>
+        <div className="flex items-center gap-1.5">
+          <div className="text-xs uppercase tracking-wide text-text-muted font-semibold">{name}</div>
+          {infoText && (
+            <span className="relative group inline-flex">
+              <Info className="w-3.5 h-3.5 text-text-muted cursor-pointer" />
+              <span className="pointer-events-none absolute left-0 top-5 z-50 max-w-[220px] w-[220px] text-xs bg-[var(--brand-navy)] text-white rounded-md p-2 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity shadow-lg">
+                {infoText}
+              </span>
+            </span>
+          )}
+        </div>
         <span className={cn("w-2.5 h-2.5 rounded-full mt-1", ragDot[rag])} />
       </div>
       <div className="flex items-baseline gap-2">

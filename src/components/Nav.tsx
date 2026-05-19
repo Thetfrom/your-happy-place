@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { Lock } from "lucide-react";
 import { useApp, PLAN_ACCESS } from "@/lib/app-context";
 import { cn } from "@/lib/utils";
+import tameyoLogo from "@/assets/tameyo-logo.png";
 
 interface TabDef {
   to: string;
@@ -28,7 +29,7 @@ const TABS: TabDef[] = [
 ];
 
 export function Nav() {
-  const { subscriber, snapshots, setPlan } = useApp();
+  const { subscriber, snapshots } = useApp();
   const location = useLocation();
   const navigate = useNavigate();
   const acc = access(subscriber.plan);
@@ -42,9 +43,15 @@ export function Nav() {
   return (
     <header className="bg-card border-b border-border sticky top-0 z-50">
       <div className="max-w-[1280px] mx-auto px-6 py-4 flex items-center gap-8">
-        <Link to="/" className="text-2xl tracking-[-0.06em] shrink-0">
-          <span className="font-bold text-[var(--brand-orange)]">TAMEYO</span>{" "}
-          <span className="font-normal text-[var(--brand-orange)]">Monitor</span>
+        <Link to="/" className="shrink-0 flex items-center gap-2">
+          <img
+            src={tameyoLogo}
+            alt="TAMEYO Group"
+            className="h-8 w-auto object-contain"
+          />
+          <span className="font-normal text-2xl tracking-[-0.06em] text-[var(--brand-orange)]">
+            Monitor
+          </span>
         </Link>
 
         <nav className="flex-1 flex items-center gap-1 overflow-x-auto">
@@ -98,18 +105,6 @@ export function Nav() {
           <div className={cn("px-2.5 py-1 rounded-full text-xs font-bold uppercase", planBadgeClass[subscriber.plan])}>
             {subscriber.plan}
           </div>
-
-          {/* Demo: tier switcher */}
-          <select
-            value={subscriber.plan}
-            onChange={(e) => setPlan(e.target.value as never)}
-            className="text-xs border border-border rounded-md px-2 py-1 bg-card cursor-pointer"
-            title="Demo tier switcher"
-          >
-            <option value="lite">Lite</option>
-            <option value="pro">Pro</option>
-            <option value="agency">Agency</option>
-          </select>
         </div>
       </div>
     </header>

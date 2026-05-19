@@ -7,7 +7,6 @@ interface AppState {
   latest: Snapshot | null;
   previous: Snapshot | null;
   actionStates: ActionState[];
-  setPlan: (p: Plan) => void;
   setStatus: (s: Subscriber["status"]) => void;
   setReportCount: (n: number) => void;
   toggleAction: (snapshotId: string) => void;
@@ -34,7 +33,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
     latest,
     previous,
     actionStates,
-    setPlan: (plan) => setSubscriber((s) => ({ ...s, plan })),
     setStatus: (status) => setSubscriber((s) => ({ ...s, status })),
     setReportCount,
     toggleAction: (snapshot_id) =>
