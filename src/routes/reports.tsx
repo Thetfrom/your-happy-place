@@ -69,9 +69,9 @@ function ReportsPage() {
                 <button
                   disabled
                   className="inline-flex items-center gap-2 px-3 py-2 text-xs font-semibold rounded-md border border-border text-text-secondary disabled:opacity-60 disabled:cursor-not-allowed"
-                  title="PDF generating..."
+                  title="PDF coming soon"
                 >
-                  <Download className="w-3 h-3" /> PDF generating...
+                  <Download className="w-3 h-3" /> PDF coming soon
                 </button>
               )}
             </div>
