@@ -8,7 +8,7 @@ export const Route = createFileRoute("/settings")({
 });
 
 function SettingsPage() {
-  const { subscriber, updateSubscriber, setStatus } = useApp();
+  const { subscriber, updateSubscriber } = useApp();
   const [email, setEmail] = useState(subscriber.email);
   const [saved, setSaved] = useState(false);
   const cancelled = subscriber.status === "cancelled";
@@ -63,23 +63,6 @@ function SettingsPage() {
 
       <Section title="Login">
         <p className="text-sm text-text-secondary">You log in via secure email link — no password required.</p>
-      </Section>
-
-      <Section title="Demo controls">
-        <p className="text-xs text-text-muted">These only exist in the preview build to simulate subscriber states.</p>
-        <div className="flex flex-wrap gap-2">
-          {(["active", "paused", "cancelled"] as const).map((s) => (
-            <button
-              key={s}
-              onClick={() => setStatus(s)}
-              className={`text-xs px-3 py-1.5 rounded-md border ${
-                subscriber.status === s ? "bg-[var(--brand-navy)] text-white border-transparent" : "bg-card text-text-secondary border-border hover:bg-muted"
-              }`}
-            >
-              {s}
-            </button>
-          ))}
-        </div>
       </Section>
     </div>
   );
